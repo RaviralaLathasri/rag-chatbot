@@ -1,7 +1,7 @@
 // Dynamic API URL based on environment
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
     ? 'http://localhost:5000' 
-    : 'https://rag-chatbot-backend.onrender.com'; // Replace with your actual backend URL
+    : 'https://rag-chatbot-backend-w95y.onrender.com'// Replace with your actual backend URL
 
 let selectedFile = null;
 let isProcessing = false;
