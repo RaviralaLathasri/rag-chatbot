@@ -105,6 +105,10 @@ def chat():
     try:
         response = rag_engine.generate_response(user_message, current_knowledge_base)
         
+        # Check if response indicates an API error
+        if response.startswith("Error"):
+            return jsonify({'error': response}), 500
+        
         return jsonify({
             'response': response,
             'source': current_knowledge_base['filename']
