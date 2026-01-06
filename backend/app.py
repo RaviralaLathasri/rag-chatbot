@@ -7,7 +7,17 @@ from document_processor import DocumentProcessor
 from rag_engine import RAGEngine
 
 app = Flask(__name__)
-CORS(app)
+
+# Updated CORS configuration for production
+CORS(app, resources={
+    r"/*": {
+        "origins": [
+            "http://localhost:8000",
+            "http://localhost:3000",
+            "https://*.onrender.com"
+        ]
+    }
+})
 
 UPLOAD_FOLDER = 'uploads'
 KNOWLEDGE_BASE_FOLDER = 'knowledge_base'
@@ -140,4 +150,6 @@ def status():
         }), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Use environment variable for port (Render assigns this)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
