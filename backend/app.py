@@ -14,7 +14,7 @@ CORS(app, resources={
         "origins": [
             "http://localhost:8000",
             "http://localhost:3000",
-            "https://*.onrender.com"
+            "https://rag-chatbot-frontend-g9u4.onrender.com"
         ]
     }
 })
