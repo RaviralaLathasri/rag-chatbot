@@ -166,6 +166,10 @@ function hideLoading() {
 async function checkStatus() {
     try {
         const response = await fetch(`${API_BASE_URL}/status`);
+        if (!response.ok) {
+            console.error('Backend not responding');
+            return;
+        }
         const data = await response.json();
         
         if (data.has_document) {
@@ -174,7 +178,7 @@ async function checkStatus() {
             chatContainer.style.display = 'flex';
         }
     } catch (error) {
-        console.error('Error checking status:', error);
+        console.error('Error checking status - make sure backend is running:', error);
     }
 }
 
